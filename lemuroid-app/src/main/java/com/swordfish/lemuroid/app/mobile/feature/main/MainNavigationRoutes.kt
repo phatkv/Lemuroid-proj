@@ -6,10 +6,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.VideogameAsset
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.VideogameAsset
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -49,8 +49,9 @@ enum class MainRoute(
         titleId = R.string.favorites,
     ),
     SEARCH(
-        route = "search",
+        route = "home/search",
         titleId = R.string.title_search,
+        showBottomNavigation = false,
     ),
     SYSTEMS(
         route = "systems/home",
@@ -63,9 +64,9 @@ enum class MainRoute(
         listOf(navArgument("metaSystemId") { type = NavType.StringType }),
     ),
     SETTINGS(
-        route = "settings/home",
+        route = "settings",
         titleId = R.string.title_settings,
-        showBottomNavigation = false,
+        showBottomNavigation = true,
     ),
     SETTINGS_ADVANCED(
         route = "settings/advanced",
@@ -107,7 +108,7 @@ enum class MainRoute(
 
     companion object {
         fun findByRoute(route: String): MainRoute {
-            return values().first { it.route == route }
+            return entries.first { it.route == route }
         }
     }
 }
@@ -120,6 +121,5 @@ enum class MainNavigationRoutes(
 ) {
     HOME(MainRoute.HOME, R.string.title_home, Icons.Filled.Home, Icons.Outlined.Home),
     FAVORITES(MainRoute.FAVORITES, R.string.favorites, Icons.Filled.Favorite, Icons.Filled.FavoriteBorder),
-    SYSTEMS(MainRoute.SYSTEMS, R.string.title_systems, Icons.Filled.VideogameAsset, Icons.Outlined.VideogameAsset),
-    SEARCH(MainRoute.SEARCH, R.string.title_search, Icons.Filled.Search, Icons.Outlined.Search),
+    SETTINGS(MainRoute.SETTINGS, R.string.title_settings, Icons.Filled.Settings, Icons.Outlined.Settings),
 }
